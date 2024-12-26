@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\CheckoutController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +22,10 @@ Route::delete('/product', [App\Http\Controllers\HomeController::class, 'destroy'
 Route::delete('/cart/{id}', [App\Http\Controllers\HomeController::class, 'hapus_item'])->name('hapus_item');
 // Route::get('/testimonials', [TestimonialController::class, 'index'])->name('update');
 Route::post('/testimonials', [TestimonialController::class, 'store'])->name('store');
+Route::get('/payment', [App\Http\Controllers\Payment::class, 'index'])->name('payment');
+Route::get('/product/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('product.detail');
+Route::get('/checkout/{id}', [CheckoutController::class, 'show'])->name('checkout.detail');
+Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
 Auth::routes();
 

@@ -112,9 +112,9 @@
     </div>
 
     <section id="Projects" class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10">
-        @foreach ($data->take(4) as $item)
+        @foreach ($data as $item)
             <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-                <a href="#">
+                <a href="{{ route ('product.detail', $item->id) }}" class="block">
                     <img src="{{ asset('img/' . $item->image) }}" alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
                     <div class="px-4 py-3 w-72">
                         <span class="text-gray-400 mr-3 uppercase text-xs">{{ $item->category }}</span>

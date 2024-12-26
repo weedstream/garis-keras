@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('harga');
             $table->string('image');
             $table->enum('category', ['T-Shirt', 'Hoodie', 'Hat']);
+            $table->string('stok');
             $table->enum('status', ['publish', 'draft']);
             $table->timestamps();
         });

@@ -48,7 +48,7 @@
                         height="40">
                     <div class="profile">
                         <p>Users</p>
-                        <small class="text-muted">Cashier</small>
+                        <small class="text-muted"></small>
                     </div>
                 </div>
             </div>

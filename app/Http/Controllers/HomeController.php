@@ -101,4 +101,14 @@ class HomeController extends Controller
             'potongan' => $cek->potongan
         ]);
     }
+
+    public function show ($id)
+    {
+        $data = Product::findOrfail($id);
+        if (empty($data)) {
+            return redirect()->route('index')->with('galat', 'Product Tidak Ada');
+        }
+
+        return view('home.payment', compact('data'));
+    }
 }

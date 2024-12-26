@@ -43,7 +43,7 @@
                     <h4>@yield('title')</h4>
                 </div>
                 <div class="card-body">
-                    <form action="" method="GET">
+                    <form action="{{ route ('product.index') }}" method="GET">
                         <div class="row g-3 align-items-center">
                             <div class="col-md-6">
                                 <label for="cari" class="form-label">Search Keywords</label>
@@ -96,6 +96,7 @@
                                     <th>NAME</th>
                                     <th>CATEGORY</th>
                                     <th>PRICE</th>
+                                    <th>STOK</th>
                                     <th>STATUS</th>
                                     <th>ACTION</th>
 
@@ -108,6 +109,7 @@
                                         <td class="text-bold-500">{{ $item->title }}</td>
                                         <td>{{ $item->category }}</td>
                                         <td>Rp. {{ number_format($item->harga) }}</td>
+                                        <td>{{ number_format($item->stok) }}</td>
                                         <td>
                                             <span
                                                 class="badge {{ $item->status == 'publish' ? 'bg-success' : 'bg-danger' }}">{{ $item->status }}</span>

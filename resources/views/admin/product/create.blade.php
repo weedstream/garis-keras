@@ -62,6 +62,11 @@
                                         @enderror
                                     </fieldset>
                                 </div>
+                                {{-- adding stok form --}}
+                                <div class="mb-3">
+                                    <label class="form-label">Enter the stock</label>
+                                    <input type="number" class="form-control @error('stok') is-invalid @enderror"
+                                        name="stok" value="{{ old('stok') }}" autocomplete="off">
                                 <div class="mb-3">
                                     <label class="form-label">Select Product Status</label>
                                     <fieldset class="form-group">

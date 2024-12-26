@@ -14,12 +14,25 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         # membuat variabel untuk menampung data product
-        $data = Product::query()
-            ->get();
+        // $data = Product::query()
+        //     ->get();
+        $query = Product::query();
+        if ($request->filled('cari')) {
+            $query->where('title', 'like', '%' . $request->cari . '%');
+        }
 
+        if ($request->filled('category')) {
+            $query->where('category', $request->category);
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        $data = $query->get();
         # mengembalikan ke dalam template dengan membawa variabel
         return view('admin.product.index', compact('data'));
     }
@@ -49,6 +62,7 @@ class ProductController extends Controller
             'harga' => 'required|numeric',
             'image' => 'required|image|mimes:jpg,png,jpeg',
             'category' => 'required|in:T-Shirt,Hoodie,Hat',
+            'stok' => 'required|numeric',
             'status' => 'required',
         ], [
             'title.required' => 'Wajib di isi',
@@ -59,6 +73,8 @@ class ProductController extends Controller
             'image.mimes' => 'Gambar Hanya JPG dan PNG',
             'image.size' => 'Size Gambar Hanya Max 2 MB',
             'category.required' => 'Wajib di isi',
+            'stok.required' => 'Wajib di isi',
+            'stok.numeric' => 'Stok Wajib Angka',
             'status.required' => 'Wajib di isi',
         ]);
 
@@ -74,6 +90,7 @@ class ProductController extends Controller
             'harga' => $request->harga,
             'image' => $imageName,
             'category' => $request->category,
+            'stok' => $request->stok,
             'status' => $request->status,
         ]);
         # akhir query
@@ -132,6 +149,7 @@ class ProductController extends Controller
             'harga' => 'required|numeric',
             'image' => 'image|mimes:jpg,png,jpeg',
             'category' => 'required|in:T-Shirt,Hoodie,Hat',
+            'stok' => 'required|numeric',
             'status' => 'required',
         ], [
             'title.required' => 'Wajib di isi',
@@ -141,6 +159,8 @@ class ProductController extends Controller
             'image.mimes' => 'Gambar Hanya JPG dan PNG',
             'image.size' => 'Size Gambar Hanya Max 2 MB',
             'category.required' => 'Wajib di isi',
+            'stok.required' => 'Wajib di isi',
+            'stok.numeric' => 'Stok Wajib Angka',
             'status.required' => 'Wajib di isi',
         ]);
 
@@ -164,6 +184,7 @@ class ProductController extends Controller
                 'harga' => $request->harga,
                 'status' => $request->status,
                 'category' => $request->category,
+                'stok' => $request->stok,
                 'image' => $imageName,
             ]);
             # akhir query
@@ -180,6 +201,7 @@ class ProductController extends Controller
                 'title' => $request->title,
                 'harga' => $request->harga,
                 'category' => $request->category,
+                'stok' => $request->stok,
                 'status' => $request->status,
             ]);
             # akhir query
